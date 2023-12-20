@@ -37,6 +37,7 @@ public class BudgetImpl implements Budget{
     public double budgetByPerson(String person) {
         return purchaseList.stream()
                 .filter(purchase -> purchase.getPerson().equals(person))
+                .peek(p -> System.out.println(p))
                 .mapToDouble(Purchase::getCost)
                 .sum();
     }
@@ -52,14 +53,14 @@ public class BudgetImpl implements Budget{
     @Override
     public double budgetByPeriod(LocalDate from, LocalDate to) {
         return purchaseList.stream()
-                .filter(purchase -> purchase.getDate().isAfter(from) && purchase.getDate().isBefore(to))
+                .filter(purchase -> purchase.getDate().isAfter(from.minusDays(1)) && purchase.getDate().isBefore(to))
                 .mapToDouble(Purchase::getCost)
                 .sum();
     }
 
     @Override
     public double addMoney(double money) {
-        return budget + money;
+        return this.budget + money;
     }
 
     @Override
@@ -70,5 +71,10 @@ public class BudgetImpl implements Budget{
     @Override
     public double checkMoney(Purchase purchase) {
         return budget - calcBudget();
+    }
+
+    @Override
+    public double getBudget() { /// Допилить
+        return budget;
     }
 }

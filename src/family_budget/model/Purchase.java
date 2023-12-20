@@ -11,7 +11,7 @@ public class Purchase implements Comparable<Purchase>{
     private String person;
     private List<Product> products;
 
-    public Purchase(int id, LocalDate date, double cost, String store, String person, List<Product> products) {
+    public Purchase(int id, LocalDate date, String store, String person, List<Product> products) {
         this.id = id;
         this.date = date;
         this.cost = calculatePurchaseCost(products);

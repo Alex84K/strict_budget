@@ -3,6 +3,7 @@ package family_budget.dao;
 import family_budget.model.Purchase;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface Budget {
     boolean addPurchase(Purchase purchase);
@@ -13,5 +14,6 @@ public interface Budget {
     double addMoney (double money);
     boolean checkBudget(Purchase purchase);
     double checkMoney(Purchase purchase);
+    double getBudget();
 
 }
